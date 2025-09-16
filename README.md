@@ -35,4 +35,39 @@ Cloud computing é o modelo que oferece recursos de TI — como servidores, arma
 ## ✅ Resumindo
 - **On-Premise** → mais controle, mas mais custos e responsabilidades.  
 - **Nuvem** → mais flexibilidade, escalabilidade e custo otimizado.  
-- **IaaS** = infraestrutura, **PaaS** = plataforma, **SaaS** = software pronto.  
+- **IaaS** = infraestrutura, **PaaS** = plataforma, **SaaS** = software pronto.
+
+----------------------------------------------------
+# ☁️ Criação de Recursos na Nuvem Azure: SLAs e Custo-Benefício
+
+## 🛠️ Criação de recursos
+Na Azure, criar recursos significa provisionar serviços (VMs, bancos de dados, storage, redes, etc.) dentro de uma **subscription**.  
+Cada recurso vem com opções de configuração que influenciam diretamente preço, desempenho e disponibilidade.  
+
+## 📊 SLAs (Service Level Agreements)
+A Microsoft define **SLAs** como garantias contratuais de disponibilidade. Exemplos:
+
+- **VM única:** até 99,9% de disponibilidade.  
+- **VMs em Availability Set:** até 99,95%.  
+- **VMs em Availability Zones diferentes:** até 99,99%.  
+- **Serviços gerenciados (ex: Azure SQL Database Premium):** podem chegar a 99,99% ou mais.  
+
+### ⏱️ Downtime máximo permitido por ano
+| SLA        | Indisponibilidade anual        |
+|------------|--------------------------------|
+| **99,9%**  | ~8h 45min 57s                 |
+| **99,95%** | ~4h 22min 58s                 |
+| **99,99%** | ~52min 35s                    |
+| **99,999%**| ~5min 15s                     |
+
+## 💰 Análise de custo-benefício
+O dilema é simples: **quanto pagar para reduzir minutos de indisponibilidade?**
+
+- 👨‍💻 Aplicações internas → 99% ou 99,9% podem ser suficientes.  
+- 🏦 Sistemas críticos (e-commerce, financeiro, hospitalar) → cada minuto de downtime custa caro, então **redundância compensa** (availability zones, regiões diferentes, failover).  
+
+### 🔍 Estratégia prática
+1. **Mapeie o impacto do downtime**: quanto custa 1h fora do ar para o negócio?  
+2. **Compare com o custo da redundância** (VM extra, replicação de banco, load balancer).  
+3. **Ache o ponto ótimo**: não existe *zero downtime* barato, mas sempre dá para equilibrar custo e disponibilidade.  
+
