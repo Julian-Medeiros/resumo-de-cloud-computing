@@ -71,3 +71,48 @@ O dilema é simples: **quanto pagar para reduzir minutos de indisponibilidade?**
 2. **Compare com o custo da redundância** (VM extra, replicação de banco, load balancer).  
 3. **Ache o ponto ótimo**: não existe *zero downtime* barato, mas sempre dá para equilibrar custo e disponibilidade.  
 
+--------------------------------------------------------
+# 🗄️ Configurando uma Instância de Banco de Dados na Azure
+
+## ⚙️ Criação e configuração
+Na Azure, serviços de banco de dados são oferecidos em versões **PaaS** e **IaaS**:
+
+- **IaaS (VM + SQL Server instalado):** mais flexibilidade, mas você gerencia patching, backup e alta disponibilidade.  
+- **PaaS (Azure SQL Database, Cosmos DB, PostgreSQL, MySQL, etc.):** gerenciado pela Microsoft, com escalabilidade, backup automático e SLAs mais altos.  
+
+Passos comuns de configuração:
+1. **Escolha a região** (latência e conformidade regulatória).  
+2. **Defina o tier** (Basic, Standard, Premium, Hyperscale).  
+3. **Configure segurança** (firewall rules, autenticação, identidade gerenciada, criptografia em repouso).  
+4. **Monitore** com métricas de desempenho, alertas e auditoria de acessos.  
+
+## 📊 SLAs (Service Level Agreements)
+Cada serviço tem seu SLA, que varia de acordo com o modelo de implantação e redundância:
+
+- **SQL Server em VM (IaaS):** 99,9% com infraestrutura básica.  
+- **Azure SQL Database – Single Instance:** até 99,99%.  
+- **Azure SQL Database – com redundância em zonas:** até 99,995%.  
+- **Cosmos DB:** 99,999% de disponibilidade globalmente.  
+
+### ⏱️ Downtime máximo permitido por ano
+| SLA        | Indisponibilidade anual        |
+|------------|--------------------------------|
+| **99,9%**  | ~8h 45min 57s                 |
+| **99,95%** | ~4h 22min 58s                 |
+| **99,99%** | ~52min 35s                    |
+| **99,995%**| ~26min 17s                    |
+| **99,999%**| ~5min 15s                     |
+
+## 💰 Análise de custo-benefício
+O mesmo dilema: **quanto custa o downtime para o negócio?**
+
+- Aplicações de **baixa criticidade** → tiers básicos e sem redundância já atendem.  
+- Aplicações de **alta criticidade** (financeiro, saúde, e-commerce) → melhor investir em **geo-replicação, failover groups e redundância em zonas**.  
+
+### 🔍 Estratégia prática
+1. **Mapeie requisitos de negócio:** RTO (Recovery Time Objective) e RPO (Recovery Point Objective).  
+2. **Compare preços dos tiers** com o custo de uma possível indisponibilidade.  
+3. **Implemente segurança e redundância**: backup automático, replicação ativa, failover groups.  
+4. **Monitore sempre**: alertas de performance, auditoria de acessos e consumo.  
+
+
